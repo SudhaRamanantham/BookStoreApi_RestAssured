@@ -13,8 +13,7 @@ public class StepImplementation extends SpecBuild {
 
 	public static ReusableMethods rm = new ReusableMethods();
 
-	// In stepDefenition -> Given()-> baseUri,header,requestBody -> those things
-	// going to call from httpWithoutAuth()
+	// In stepDefenition -> Given()-> baseUri,header,requestBody
 	public void httpWithoutAuth() {
 		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(
 				PropertyReader.getStringProperty("username"), PropertyReader.getStringProperty("password"));
@@ -23,7 +22,7 @@ public class StepImplementation extends SpecBuild {
 	}
 
 	// In stepDefinition -> When()-> requestType(Post,Get,Put,Delete) and endPoint
-	public Response whenMethodWithoutAuth(String endPoint, String reqType) {
+	public Response createUserWhenM(String endPoint, String reqType) {
 
 		// Retrieve the enum endPoint value
 		EndPoints ep = EndPoints.valueOf(endPoint);
@@ -33,11 +32,13 @@ public class StepImplementation extends SpecBuild {
 		{
 			response = reqSpec.when().post(ep.getPath());
 
-			if (EnvVariables.UserId == null) {
-				EnvVariables.UserId = rm.setUserID(response);
+			if (CollectionVariables.UserId == null) {
+				CollectionVariables.UserId = rm.setUserID(response);
+				System.out.println("Setting userId Value in collection Variables: \n"+CollectionVariables.UserId);
 			}
-			if (EnvVariables.Token == null) {
-				EnvVariables.Token = rm.setToken(response);
+			if (CollectionVariables.Token == null) {
+				CollectionVariables.Token = rm.setToken(response);
+				System.out.println("Setting token Value in collection Variables: \n"+CollectionVariables.Token);
 			}
 		} else if (reqType.equalsIgnoreCase("GET"))
 			response = reqSpec.when().get(ep.getPath());
@@ -53,6 +54,8 @@ public class StepImplementation extends SpecBuild {
 	public void thenMethod(Integer expectedStatusCode, String expectedStatusLine) {
 
 		try {
+
+			System.out.println("Response Body: \n" + response.body().asPrettyString());
 
 			// Get the actual status message line from the response -> "HTTP/1.1 200 OK"
 			String resStatusMessage = response.getStatusLine();
@@ -79,19 +82,20 @@ public class StepImplementation extends SpecBuild {
 
 	}
 
-	// In stepDefenition -> Given()-> baseUri,Authorization,header -> those things
-	// going to call from httpWithAuth()
+	// In stepDefenition -> Given()-> baseUri,Authorization as Bearer token,header 
 	public void httpWithAuth(String bearerToken) {
 
-		bearerToken = EnvVariables.Token;
+		bearerToken = CollectionVariables.Token;
 
-		System.out.println("Token from EnvVariables: " + bearerToken);
+		System.out.println("Token from collection variables: " + bearerToken);
 
 		reqSpecWithAuth = RestAssured.given().spec(ReqBuilder()).header("Authorization", "Bearer " + bearerToken);
 
 	}
 
-	public Response whenMethodWithUserId(String endPoint, String reqType) {
+	public Response generateTokenWhenM(String endPoint, String reqType) {
+		
+		System.out.println("UserId saved from EnvVariables: " + CollectionVariables.UserId);
 
 		// Retrieve the enum endPoint value
 		EndPoints ep = EndPoints.valueOf(endPoint);
@@ -99,7 +103,7 @@ public class StepImplementation extends SpecBuild {
 
 		// Use the retrieved enum endpoint value and pass the userId from EnvVariables
 		// to replace the placeholder
-		String endpointWithUserId = ep.getPathWithUserId(EnvVariables.UserId);
+		String endpointWithUserId = ep.getPathWithUserId(CollectionVariables.UserId);
 		System.out.println("BaseUri with endpoint and UserId: " + endpointWithUserId);
 
 		if (reqType.equalsIgnoreCase("GET"))

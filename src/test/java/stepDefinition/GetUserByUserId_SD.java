@@ -15,7 +15,7 @@ public class GetUserByUserId_SD extends StepImplementation {
 	@When("User enters valid endpoint {string} with UserId and requestType {string} request")
 	public void user_enters_valid_endpoint_with_user_id_and_request_type_request(String endPoint, String requestType) {
 		System.out.println("Inside When()method from GetUserByUserId_SD");
-		response = whenMethodWithUserId(endPoint, requestType);
+		response = generateTokenWhenM(endPoint, requestType);
 		System.out.println("Inside When() method from GetUserByUserId_SD end");
 	}
 }

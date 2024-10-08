@@ -35,6 +35,7 @@ public class SpecBuild {
 			e.printStackTrace(); // Print stack trace for debugging
 			throw new RuntimeException(e);
 		}
+		
 	}
 
 	public ResponseSpecification ResBuilder() {
@@ -43,7 +44,6 @@ public class SpecBuild {
 		resBuilder.expectContentType(ContentType.JSON);
 
 		return resBuilder.build();
-
 
 	}
 

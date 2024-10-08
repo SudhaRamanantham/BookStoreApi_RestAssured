@@ -19,9 +19,6 @@ public enum EndPoints {
 
 	// Method to dynamically replace {UserId}
 	public String getPathWithUserId(String UserId) {
-//		if (UserId == null || UserId.isEmpty()) {
-//			throw new IllegalArgumentException("UserId cannot be null or empty");
-//		}
 		return this.path.replace("{UserId}", UserId);
 	}
 

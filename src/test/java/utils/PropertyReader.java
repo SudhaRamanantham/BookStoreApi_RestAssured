@@ -16,7 +16,7 @@ public class PropertyReader {
 		prop = new Properties();
 
 		try {
-			FileInputStream fis = new FileInputStream("src/test/resources/global.properties");
+			FileInputStream fis = new FileInputStream("src/test/resources/EnvVariables.properties");
 			prop.load(fis);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
