@@ -9,11 +9,12 @@ import routes.EndPoints;
 public class StepImplementation extends SpecBuild {
 
 	public static Response response;
-	public static RequestSpecification reqSpec,reqSpecWithAuth;
+	public static RequestSpecification reqSpec, reqSpecWithAuth;
 
 	public static ReusableMethods rm = new ReusableMethods();
 
-	// In stepDefenition -> Given()-> baseUri,header,requestBody -> those things going to call from httpWithoutAuth()
+	// In stepDefenition -> Given()-> baseUri,header,requestBody -> those things
+	// going to call from httpWithoutAuth()
 	public void httpWithoutAuth() {
 		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(
 				PropertyReader.getStringProperty("username"), PropertyReader.getStringProperty("password"));
@@ -29,8 +30,16 @@ public class StepImplementation extends SpecBuild {
 		System.out.println("BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
 		if (reqType.equalsIgnoreCase("POST"))// ||reqType.equalsIgnoreCase("PUT"))
+		{
 			response = reqSpec.when().post(ep.getPath());
-		else if (reqType.equalsIgnoreCase("GET"))
+
+			if (EnvVariables.UserId == null) {
+				EnvVariables.UserId = rm.setUserID(response);
+			}
+			if (EnvVariables.Token == null) {
+				EnvVariables.Token = rm.setToken(response);
+			}
+		} else if (reqType.equalsIgnoreCase("GET"))
 			response = reqSpec.when().get(ep.getPath());
 		else if (reqType.equalsIgnoreCase("PUT"))
 			response = reqSpec.when().basePath(ep.getPath()).put();
@@ -58,8 +67,8 @@ public class StepImplementation extends SpecBuild {
 			System.out.println("StatusLine from response body: " + resStatusLine);
 
 			response.then().spec(ResBuilder()).statusCode(expectedStatusCode)
-			.statusLine("HTTP/1.1 " + expectedStatusCode + " " + expectedStatusLine);
-			
+					.statusLine("HTTP/1.1 " + expectedStatusCode + " " + expectedStatusLine);
+
 			System.out.println("Test Passed: Status code and Status line matches. Expected status code: "
 					+ expectedStatusCode + ", Response Status code: " + resStatusCode + ", Expected status line: "
 					+ expectedStatusLine + ", Response Status line: " + resStatusLine);
@@ -70,7 +79,8 @@ public class StepImplementation extends SpecBuild {
 
 	}
 
-	// In stepDefenition -> Given()-> baseUri,Authorization,header -> those things going to call from httpWithAuth()
+	// In stepDefenition -> Given()-> baseUri,Authorization,header -> those things
+	// going to call from httpWithAuth()
 	public void httpWithAuth(String bearerToken) {
 
 		bearerToken = EnvVariables.Token;
@@ -87,7 +97,8 @@ public class StepImplementation extends SpecBuild {
 		EndPoints ep = EndPoints.valueOf(endPoint);
 		System.out.println(" BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
-		// Use the retrieved enum endpoint value and pass the userId from EnvVariables to replace the placeholder
+		// Use the retrieved enum endpoint value and pass the userId from EnvVariables
+		// to replace the placeholder
 		String endpointWithUserId = ep.getPathWithUserId(EnvVariables.UserId);
 		System.out.println("BaseUri with endpoint and UserId: " + endpointWithUserId);
 

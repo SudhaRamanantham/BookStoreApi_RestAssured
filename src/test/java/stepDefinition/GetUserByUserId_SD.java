@@ -18,12 +18,4 @@ public class GetUserByUserId_SD extends StepImplementation {
 		response = whenMethodWithUserId(endPoint, requestType);
 		System.out.println("Inside When() method from GetUserByUserId_SD end");
 	}
-
-	@Then("User get successful {int} status code and {string} status line")
-	public void user_get_successful_status_code_and_status_line(Integer statusCode, String statusLine) {
-		System.out.println("Inside Then() method from PostCreateAccountUser_SD");
-		thenMethod(statusCode, statusLine);
-		System.out.println("Inside Then() method from PostCreateAccountUser_SD end");
-	}
-
 }
