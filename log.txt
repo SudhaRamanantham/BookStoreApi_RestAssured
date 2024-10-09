@@ -11,21 +11,21 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "userName": "bookTest212",
+    "userName": "bookTest220",
     "password": "Password@143"
 }
 HTTP/1.1 201 Created
 Server: nginx/1.17.10 (Ubuntu)
-Date: Tue, 08 Oct 2024 20:09:44 GMT
+Date: Wed, 09 Oct 2024 04:37:54 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 85
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"55-VR0EF2tR0GUNF5ZVvzIWBT+O0ao"
+ETag: W/"55-EmSd/htcT6Mo3Iwp2lxHxxJsXZk"
 
 {
-    "userID": "c06efa84-c290-4f06-b632-88b9ee1f8dc0",
-    "username": "bookTest212",
+    "userID": "0ff9feea-f5a0-4e4d-84b2-41958ead6344",
+    "username": "bookTest220",
     "books": [
         
     ]
@@ -43,32 +43,32 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "userName": "bookTest212",
+    "userName": "bookTest220",
     "password": "Password@143"
 }
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Tue, 08 Oct 2024 20:09:45 GMT
+Date: Wed, 09 Oct 2024 04:37:57 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 282
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"11a-z9Mg7ygaO/MuLFIRiRuBIuPbFHM"
+ETag: W/"11a-DiUnrE/Qc1W3G7FoBaBz7Hxl+KI"
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjEyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0MTgxODV9.VrJ9_X2rHZWMEhVz449GJ7x73HeqRB4L9qLD0jMBzBA",
-    "expires": "2024-10-15T20:09:45.470Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjIwIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NDg2Nzd9.28DXfN5QjgS2n3uC39I_7ZnUoemUh2_jUoKUzkoRnq4",
+    "expires": "2024-10-16T04:37:57.167Z",
     "status": "Success",
     "result": "User authorized successfully."
 }
 Request method:	GET
-Request URI:	https://bookstore.toolsqa.com/Account/v1/User/c06efa84-c290-4f06-b632-88b9ee1f8dc0
+Request URI:	https://bookstore.toolsqa.com/Account/v1/User/0ff9feea-f5a0-4e4d-84b2-41958ead6344
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjEyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0MTgxODV9.VrJ9_X2rHZWMEhVz449GJ7x73HeqRB4L9qLD0jMBzBA
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjIwIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NDg2Nzd9.28DXfN5QjgS2n3uC39I_7ZnUoemUh2_jUoKUzkoRnq4
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
@@ -76,16 +76,16 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Tue, 08 Oct 2024 20:09:46 GMT
+Date: Wed, 09 Oct 2024 04:37:58 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 85
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"55-4uGZBYQsdXIfDfADxX2D+jYvxhs"
+ETag: W/"55-Ll9pC1q2RiJLdY3g88eLTRwsBd4"
 
 {
-    "userId": "c06efa84-c290-4f06-b632-88b9ee1f8dc0",
-    "username": "bookTest212",
+    "userId": "0ff9feea-f5a0-4e4d-84b2-41958ead6344",
+    "username": "bookTest220",
     "books": [
         
     ]
@@ -97,7 +97,7 @@ Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjEyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0MTgxODV9.VrJ9_X2rHZWMEhVz449GJ7x73HeqRB4L9qLD0jMBzBA
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjIwIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NDg2Nzd9.28DXfN5QjgS2n3uC39I_7ZnUoemUh2_jUoKUzkoRnq4
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
@@ -105,7 +105,7 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Tue, 08 Oct 2024 20:09:46 GMT
+Date: Wed, 09 Oct 2024 04:37:59 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 4514
 Connection: keep-alive
@@ -201,6 +201,43 @@ ETag: W/"11a2-8zfX++QwcgaCjSU6F8JP9fUd1tY"
             "pages": 352,
             "description": "ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that E",
             "website": "https://leanpub.com/understandinges6/read"
+        }
+    ]
+}
+Request method:	POST
+Request URI:	https://bookstore.toolsqa.com/BookStore/v1/Books
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjIwIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NDg2Nzd9.28DXfN5QjgS2n3uC39I_7ZnUoemUh2_jUoKUzkoRnq4
+				Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "userId": "0ff9feea-f5a0-4e4d-84b2-41958ead6344",
+    "collectionOfIsbns": [
+        {
+            "isbn": "9781449325862"
+        }
+    ]
+}
+HTTP/1.1 201 Created
+Server: nginx/1.17.10 (Ubuntu)
+Date: Wed, 09 Oct 2024 04:38:00 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 36
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"24-2U7DK3nFgERO/LjA8mW3SiqYyFc"
+
+{
+    "books": [
+        {
+            "isbn": "9781449325862"
         }
     ]
 }

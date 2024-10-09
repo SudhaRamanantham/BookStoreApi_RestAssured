@@ -24,4 +24,18 @@ public class ReusableMethods {
 		return tokenValue;
 	}
 
+	// get isbn 0th element value from response body
+	public String getIsbn1(Response response) {
+		String isbnValue1 = extractStringFromResponse(response, "books[0].isbn");
+		System.out.println("isbn 0th element value from response body: " + isbnValue1);
+		return isbnValue1;
+	}
+
+	// get isbn 0th element value from response body
+	public String getIsbn2(Response response) {
+		String isbnValue2 = extractStringFromResponse(response, "books[1].isbn");
+		System.out.println("isbn 1th element value from response body: " + isbnValue2);
+		return isbnValue2;
+	}
+
 }
