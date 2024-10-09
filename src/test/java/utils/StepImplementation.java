@@ -108,7 +108,7 @@ public class StepImplementation extends SpecBuild {
 
 		// Use the retrieved enum endpoint value and pass the userId from EnvVariables
 		// to replace the placeholder
-		String endpointWithUserId = ep.getPathWithUserId(CollectionVariables.UserId);
+		String endpointWithUserId = ep.getPathWithResValue(CollectionVariables.UserId);
 		System.out.println("BaseUri with endpoint and UserId: " + endpointWithUserId);
 
 		if (reqType.equalsIgnoreCase("GET")) {
@@ -136,9 +136,6 @@ public class StepImplementation extends SpecBuild {
 
 		PostCreateBookForUser_Pojo createBookForUserPojo = new PostCreateBookForUser_Pojo(CollectionVariables.UserId,
 				isbnArray);
-		// reqSpecWithAuth =
-		// RestAssured.given().spec(ReqBuilder()).header("Authorization", "Bearer " +
-		// bearerToken);
 		reqSpecWithAuth = RestAssured.given().spec(ReqBuilder())
 				.header("Authorization", "Bearer " + CollectionVariables.Token).body(createBookForUserPojo);
 	}
@@ -149,17 +146,28 @@ public class StepImplementation extends SpecBuild {
 		EndPoints ep = EndPoints.valueOf(endPoint);
 		System.out.println(" BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
-		if (reqType.equalsIgnoreCase("POST"))// ||reqType.equalsIgnoreCase("PUT"))
-		{
+		if (reqType.equalsIgnoreCase("POST")) {
 			response = reqSpecWithAuth.when().post(ep.getPath());
+			if (CollectionVariables.Isbn == null) {
+				CollectionVariables.Isbn = rm.getIsbnFromBook(response);
+				System.out.println("Setting isbn value in collection variables:" + CollectionVariables.Isbn);
+			}
 		} else if (reqType.equalsIgnoreCase("GET"))
-			response = reqSpec.when().get(ep.getPath());
+			response = reqSpecWithAuth.when().basePath(ep.getPath()).get();
 		else if (reqType.equalsIgnoreCase("PUT"))
-			response = reqSpec.when().basePath(ep.getPath()).put();
+			response = reqSpecWithAuth.when().basePath(ep.getPath()).put();
 		else if (reqType.equalsIgnoreCase("DELETE"))
-			response = reqSpec.when().basePath(ep.getPath()).delete();
+			response = reqSpecWithAuth.when().basePath(ep.getPath()).delete();
 
 		return response;
+
+	}
+
+	public void httpWithAuthQueryParams() {
+
+		reqSpecWithAuth = RestAssured.given().spec(ReqBuilder())
+				.header("Authorization", "Bearer " + CollectionVariables.Token)
+				.queryParam("ISBN", CollectionVariables.Isbn);
 
 	}
 

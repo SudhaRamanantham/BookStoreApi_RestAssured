@@ -38,4 +38,11 @@ public class ReusableMethods {
 		return isbnValue2;
 	}
 
+	// get isbn value from response body of PostCreateBookForUser
+	public String getIsbnFromBook(Response response) {
+		String isbnValue = extractStringFromResponse(response, "books[0].isbn");
+		System.out.println("isbn value from response body: " + isbnValue);
+		return isbnValue;
+	}
+
 }
