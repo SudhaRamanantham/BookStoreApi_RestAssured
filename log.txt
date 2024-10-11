@@ -11,21 +11,21 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "userName": "bookTest235",
+    "userName": "bookTest272",
     "password": "Password@143"
 }
 HTTP/1.1 201 Created
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:48 GMT
+Date: Fri, 11 Oct 2024 05:58:39 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 85
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"55-AMasL5mbXee1MOc/WCD2lq5lY70"
+ETag: W/"55-F+f8cSA9qYyS9eErme0BHFt6g+k"
 
 {
-    "userID": "8da3fdc8-2873-4a9e-b869-8b1699024259",
-    "username": "bookTest235",
+    "userID": "c1f56e0e-f01a-4706-b152-796d4e35af85",
+    "username": "bookTest272",
     "books": [
         
     ]
@@ -43,32 +43,32 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "userName": "bookTest235",
+    "userName": "bookTest272",
     "password": "Password@143"
 }
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:49 GMT
+Date: Fri, 11 Oct 2024 05:58:40 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 282
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"11a-42BZG6qvseiLc72DUPWhLera00w"
+ETag: W/"11a-O0eBo9+36UKk0Uaa5wYrJeYoXfg"
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjM1IiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NjIxNjl9.dyMe1r2pTa7Pbtyk_aTnfc_XlKnimI9CerkzzpP1TBo",
-    "expires": "2024-10-16T08:22:49.701Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ",
+    "expires": "2024-10-18T05:58:40.234Z",
     "status": "Success",
     "result": "User authorized successfully."
 }
 Request method:	GET
-Request URI:	https://bookstore.toolsqa.com/Account/v1/User/8da3fdc8-2873-4a9e-b869-8b1699024259
+Request URI:	https://bookstore.toolsqa.com/Account/v1/User/c1f56e0e-f01a-4706-b152-796d4e35af85
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjM1IiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NjIxNjl9.dyMe1r2pTa7Pbtyk_aTnfc_XlKnimI9CerkzzpP1TBo
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
@@ -76,16 +76,16 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:50 GMT
+Date: Fri, 11 Oct 2024 05:58:41 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 85
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"55-vtzKKMu2jqdVXBuTdPZDJY92WEQ"
+ETag: W/"55-YX0Iq8As34wygehNB3OLHgdfCsQ"
 
 {
-    "userId": "8da3fdc8-2873-4a9e-b869-8b1699024259",
-    "username": "bookTest235",
+    "userId": "c1f56e0e-f01a-4706-b152-796d4e35af85",
+    "username": "bookTest272",
     "books": [
         
     ]
@@ -97,7 +97,7 @@ Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjM1IiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NjIxNjl9.dyMe1r2pTa7Pbtyk_aTnfc_XlKnimI9CerkzzpP1TBo
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
@@ -105,7 +105,7 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:51 GMT
+Date: Fri, 11 Oct 2024 05:58:41 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 4514
 Connection: keep-alive
@@ -211,14 +211,14 @@ Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjM1IiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NjIxNjl9.dyMe1r2pTa7Pbtyk_aTnfc_XlKnimI9CerkzzpP1TBo
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "userId": "8da3fdc8-2873-4a9e-b869-8b1699024259",
+    "userId": "c1f56e0e-f01a-4706-b152-796d4e35af85",
     "collectionOfIsbns": [
         {
             "isbn": "9781449325862"
@@ -227,7 +227,7 @@ Body:
 }
 HTTP/1.1 201 Created
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:51 GMT
+Date: Fri, 11 Oct 2024 05:58:42 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 36
 Connection: keep-alive
@@ -248,7 +248,7 @@ Request params:	<none>
 Query params:	ISBN=9781449325862
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjM1IiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg0NjIxNjl9.dyMe1r2pTa7Pbtyk_aTnfc_XlKnimI9CerkzzpP1TBo
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
@@ -256,7 +256,7 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Wed, 09 Oct 2024 08:22:52 GMT
+Date: Fri, 11 Oct 2024 05:58:43 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 549
 Connection: keep-alive
@@ -274,3 +274,65 @@ ETag: W/"225-6wegpsdSbs3Zjpo/5fzJQey1dRQ"
     "description": "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp",
     "website": "http://chimera.labs.oreilly.com/books/1230000000561/index.html"
 }
+Request method:	PUT
+Request URI:	https://bookstore.toolsqa.com/BookStore/v1/Books/9781449325862
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
+				Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "userId": "c1f56e0e-f01a-4706-b152-796d4e35af85",
+    "isbn": "9781449337711"
+}
+HTTP/1.1 200 OK
+Server: nginx/1.17.10 (Ubuntu)
+Date: Fri, 11 Oct 2024 05:58:46 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 670
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"29e-ldpTF2Bi6lk4G4aZAB6SlbUMpg8"
+
+{
+    "userId": "c1f56e0e-f01a-4706-b152-796d4e35af85",
+    "username": "bookTest272",
+    "books": [
+        {
+            "isbn": "9781449337711",
+            "title": "Designing Evolvable Web APIs with ASP.NET",
+            "subTitle": "Harnessing the Power of the Web",
+            "author": "Glenn Block et al.",
+            "publish_date": "2020-06-04T09:12:43.000Z",
+            "publisher": "O'Reilly Media",
+            "pages": 238,
+            "description": "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft",
+            "website": "http://chimera.labs.oreilly.com/books/1234000001708/index.html"
+        }
+    ]
+}
+Request method:	DELETE
+Request URI:	https://bookstore.toolsqa.com/Account/v1/User/c1f56e0e-f01a-4706-b152-796d4e35af85
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImJvb2tUZXN0MjcyIiwicGFzc3dvcmQiOiJQYXNzd29yZEAxNDMiLCJpYXQiOjE3Mjg2MjYzMjB9.OCkk6PnmrTv_DxqqxxSLrCwTjOnSpJXILdO9oW_awcQ
+				Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 204 No Content
+Server: nginx/1.17.10 (Ubuntu)
+Date: Fri, 11 Oct 2024 05:58:47 GMT
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"58-zag80sMbue3ijG3r8sqINtAn3ko"

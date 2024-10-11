@@ -5,7 +5,7 @@ import java.util.List;
 public class PostCreateBookForUser_Pojo {
 
 	private String userId;
-	private List<Isbn_CreateBookFUser> collectionOfIsbns; // inside this array Isbn class is there
+	private List<Isbn_CreateBookFUser> collectionOfIsbns; // this array connects with Isbn_CreateBookFUser.java
 
 	// Constructor
 	public PostCreateBookForUser_Pojo(String userId, List<Isbn_CreateBookFUser> collectionOfIsbns) {

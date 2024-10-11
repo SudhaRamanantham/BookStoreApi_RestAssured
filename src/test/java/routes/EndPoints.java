@@ -4,8 +4,8 @@ public enum EndPoints {
 
 	CreateAccountUserEP("/Account/v1/User"), GenerateTokenEP("/Account/v1/GenerateToken"),
 	GetUserByUserIDEP("/Account/v1/User/{UserId}"), GetStoreBooksEP("/BookStore/v1/Books"),
-	CreateBookForUserEP("/BookStore/v1/Books"), GetBookByIsbnEP("/BookStore/v1/Book?ISBN={Isbn}"),
-	DeleteUserByUserIdEP("/Account/v1/User/{UserId}");
+	CreateBookForUserEP("/BookStore/v1/Books"), GetBookByIsbnEP("/BookStore/v1/Book?ISBN={Isbn1}"),
+	PutBookWAnotherIsbnEP("/BookStore/v1/Books/{Isbn}"), DeleteUserByUserIdEP("/Account/v1/User/{UserId}");
 
 	private String path;
 
@@ -17,14 +17,13 @@ public enum EndPoints {
 		return path;
 	}
 
-	// Method to dynamically replace {UserId}
-	public String getPathWithResValue(String responseValue) {
-		return this.path.replace("{UserId}", responseValue);
+	// Method to dynamically replace {UserId}for PathParam -> /Account/v1/User/{UserId}
+	public String getPathWUserId(String paramValue) {
+		return this.path.replace("{UserId}", paramValue);
 	}
 
-	// Method to replace path parameters like {Isbn}
-	public String getPathWithParams(String paramKey, String paramValue) {
-		return path.replace("{" + paramKey + "}", paramValue);
+	public String getPathWIsbn(String paramValue) {
+		return this.path.replace("{Isbn}", paramValue);
 	}
 
 }
