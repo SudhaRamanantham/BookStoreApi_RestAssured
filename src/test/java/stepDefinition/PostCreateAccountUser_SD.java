@@ -1,12 +1,14 @@
 package stepDefinition;
 
+import java.io.IOException;
+
 import io.cucumber.java.en.*;
 import utils.StepImplementation;
 
 public class PostCreateAccountUser_SD extends StepImplementation {
 
 	@Given("User launch baseUri and sets valid username and password in the request body")
-	public void user_launch_base_uri_and_sets_valid_username_and_password_in_the_request_body() {
+	public void user_launch_base_uri_and_sets_valid_username_and_password_in_the_request_body() throws IOException {
 	    System.out.println("Insie Given() method");
 		// Call the GivenMethod from StepImplementation
 	    httpNoAuthWBody();

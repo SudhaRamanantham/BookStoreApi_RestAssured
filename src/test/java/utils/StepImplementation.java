@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +20,18 @@ public class StepImplementation extends SpecBuild {
 	public static Response response;
 
 	public static ReusableMethods rm = new ReusableMethods();
+	
+	public static ExcelReader excelR = new ExcelReader();
 
 	public RequestSpecification getBaseUriSpecBuild() {
 		return RestAssured.given().spec(ReqBuilder());
 	}
 
 	// In stepDefenition -> Given()-> baseUri,header,requestBody
-	public void httpNoAuthWBody() {
+	public void httpNoAuthWBody() throws IOException {
+		ArrayList excelData = excelR.getData("positive");
 		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(
-				PropertyReader.getStringProperty("username"), PropertyReader.getStringProperty("password"));
+				excelData.get(1).toString(),excelData.get(2).toString());//PropertyReader.getStringProperty("username"), PropertyReader.getStringProperty("password"));
 		reqSpec = getBaseUriSpecBuild().body(createAccountUserPojo);
 	}
 
