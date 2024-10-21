@@ -2,7 +2,7 @@ package utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,58 +14,68 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader {
 
-	public ArrayList<String> getData(String testColumnName) throws IOException {
-
-		// Saving row in array list
-		ArrayList<String> al = new ArrayList<String>();
-
-		// fileInputStream argument
+	public String getCellValue(String sheetName, String rowName, String columnName) throws IOException {
+		// File path for the Excel file
 		String path = System.getProperty("user.dir") + "/src/test/resources/testData/BookStoreApi.xlsx";
 		FileInputStream fis = new FileInputStream(path);
-		XSSFWorkbook workbook = new XSSFWorkbook(fis); // workbook is the .xlsx file
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
 
-		int sheets = workbook.getNumberOfSheets(); // To check number of sheets in workbook
-		for (int i = 0; i < sheets; i++) {
-			if (workbook.getSheetName(i).equalsIgnoreCase("BookStoreApi")) { // Give sheet name and Here checking the
-																				// desired sheet to go in
-				XSSFSheet sheet = workbook.getSheetAt(i);
-				// Identify TestScenarios column by scanning the entire 1st row
-				Iterator<Row> rows = sheet.iterator(); // This will proceed to rows in that sheet
-				Row firstRow = rows.next(); // This will landed on the first row
-				Iterator<Cell> cells = firstRow.cellIterator(); // This will proceed to first cell on that row
+		// Maps to store the column index and row index
+		HashMap<String, Integer> columnMap = new HashMap<>();
+		int rowIndex = -1;
 
-				int k = 0;
-				int columnNum = 0;
-				while (cells.hasNext()) { // hasNext() is checking the value present on next cell
-					Cell value = cells.next(); // landed on first cell
-					if (value.getStringCellValue().equalsIgnoreCase("TestScenarios")) { // Give Column name
-						columnNum = k;
-					}
-					k++;
-				}
-				System.out.println("TestScenarios column number: " + columnNum);
+		// Iterator to go through rows
+		Iterator<Row> rows = sheet.iterator();
+		Row firstRow = rows.next(); // Assuming the first row contains the column headers
+		Iterator<Cell> cells = firstRow.cellIterator();
 
-				// Once column is identified then scan entire TestCases column to identify
-				// Purchase testcase row
-				while (rows.hasNext()) {
-					Row r = rows.next();
-					if (r.getCell(columnNum).getStringCellValue().equalsIgnoreCase(testColumnName)) {
-						// after you grab purchase testcase row = pull all the data of that row and feed
-						// into test
-						Iterator<Cell> cellValue = r.cellIterator();
-						while (cellValue.hasNext()) {
-							Cell ecv = cellValue.next();
-							if (ecv.getCellType() == CellType.STRING) {
-								al.add(ecv.getStringCellValue());
-							} else {
-								al.add(NumberToTextConverter.toText(ecv.getNumericCellValue()));
-							}
-						}
-					}
-				}
+		// Populate the column map with column name and its index
+		int columnIndex = 0;
+		while (cells.hasNext()) {
+			Cell cell = cells.next();
+			columnMap.put(cell.getStringCellValue(), columnIndex);
+			columnIndex++;
+		}
+
+		// Check if the specified column exists
+		if (!columnMap.containsKey(columnName)) {
+			workbook.close();
+			throw new IllegalArgumentException("Column '" + columnName + "' does not exist.");
+		}
+
+		// Find the row that matches the given row name in the first column
+		while (rows.hasNext()) {
+			Row row = rows.next();
+			Cell firstCell = row.getCell(0);
+			if (firstCell != null && firstCell.getCellType() == CellType.STRING
+					&& firstCell.getStringCellValue().equalsIgnoreCase(rowName)) {
+				rowIndex = row.getRowNum();
+				break;
 			}
 		}
-		return al;
-	}
 
+		// Check if the row was found
+		if (rowIndex == -1) {
+			workbook.close();
+			throw new IllegalArgumentException("Row '" + rowName + "' does not exist.");
+		}
+
+		// Get the cell value from the specified column for the found row
+		Row targetRow = sheet.getRow(rowIndex);
+		int targetColumnIndex = columnMap.get(columnName);
+		Cell targetCell = targetRow.getCell(targetColumnIndex);
+
+		String cellValue;
+		if (targetCell == null) {
+			cellValue = "";
+		} else if (targetCell.getCellType() == CellType.STRING) {
+			cellValue = targetCell.getStringCellValue();
+		} else {
+			cellValue = NumberToTextConverter.toText(targetCell.getNumericCellValue());
+		}
+
+		workbook.close();
+		return cellValue;
+	}
 }

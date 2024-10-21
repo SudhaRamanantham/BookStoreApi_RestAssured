@@ -7,5 +7,5 @@ public class CollectionVariables {
 	public static String Isbn1 = null;
 	public static String Isbn2 = null;
 	public static String Isbn = null;
-
+	
 }

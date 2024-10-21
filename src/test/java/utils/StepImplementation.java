@@ -15,13 +15,11 @@ import routes.EndPoints;
 
 public class StepImplementation extends SpecBuild {
 
-	public RequestSpecification reqSpec;
+	public static RequestSpecification reqSpec;
 
 	public static Response response;
 
-	public static ReusableMethods rm = new ReusableMethods();
-	
-	public static ExcelReader excelR = new ExcelReader();
+	public static ReusableResBMethods rb = new ReusableResBMethods();
 
 	public RequestSpecification getBaseUriSpecBuild() {
 		return RestAssured.given().spec(ReqBuilder());
@@ -29,9 +27,8 @@ public class StepImplementation extends SpecBuild {
 
 	// In stepDefenition -> Given()-> baseUri,header,requestBody
 	public void httpNoAuthWBody() throws IOException {
-		ArrayList excelData = excelR.getData("positive");
-		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(
-				excelData.get(1).toString(),excelData.get(2).toString());//PropertyReader.getStringProperty("username"), PropertyReader.getStringProperty("password"));
+		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(rb.rowValueFromExcel("UserName"),
+				rb.rowValueFromExcel("Password"));
 		reqSpec = getBaseUriSpecBuild().body(createAccountUserPojo);
 	}
 
@@ -40,31 +37,26 @@ public class StepImplementation extends SpecBuild {
 
 		// Retrieve the enum endPoint value
 		EndPoints ep = EndPoints.valueOf(endPoint);
-		System.out.println(" BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
+		System.out.println("BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
 		if (reqType.equalsIgnoreCase("POST")) {
 			response = reqSpec.when().post(ep.getPath());
 
 			if (CollectionVariables.UserId == null) {
-				CollectionVariables.UserId = rm.getUserID(response);
+				CollectionVariables.UserId = rb.getUserID(response);
 			}
 			if (CollectionVariables.Token == null) {
-				CollectionVariables.Token = rm.getToken(response);
+				CollectionVariables.Token = rb.getToken(response);
 			}
 		} else if (reqType.equalsIgnoreCase("GET")) {
-			System.out.println("Inside whenWEndReqT GET");
-			httpWAuthNoBody(CollectionVariables.Token);
 			response = reqSpec.when().get(ep.getPath());
-			System.out.println("Request Spec Initialized: " + reqSpec);
-
-			System.out.println("Response body inside whenWEndReqT GET: " + response.body().asPrettyString());
 			if (CollectionVariables.Isbn1 == null) {
-				CollectionVariables.Isbn1 = rm.getIsbn1(response);
+				CollectionVariables.Isbn1 = rb.getIsbn1(response);
 				System.out
 						.println("Setting isbn 0th element value in collection variables:" + CollectionVariables.Isbn1);
 			}
 			if (CollectionVariables.Isbn2 == null) {
-				CollectionVariables.Isbn2 = rm.getIsbn2(response);
+				CollectionVariables.Isbn2 = rb.getIsbn2(response);
 				System.out
 						.println("Setting isbn 1th element value in collection variables:" + CollectionVariables.Isbn2);
 			}
@@ -120,19 +112,19 @@ public class StepImplementation extends SpecBuild {
 
 	}
 
-	public Response whenWUserId(String endPoint, String reqType) {
+	public Response whenWParams(String endPoint, String reqType) {
 
 		System.out.println("UserId saved from collection variables: " + CollectionVariables.UserId);
 
 		// Retrieve the enum endPoint value
 		EndPoints ep = EndPoints.valueOf(endPoint);
-		System.out.println(" BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
+		System.out.println("BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
 		// Use the retrieved enum endpoint value and pass the userId from Collection
 		// variables to replace the placeholder
 
 		// Dynamically replace the {UserId} with the actual userId value
-		String endpointWithUserId = ep.getPathWUserId(CollectionVariables.UserId);
+		String endpointWithUserId = ep.getPathWithParams("UserId",CollectionVariables.UserId);
 
 		System.out.println("BaseUri with endpoint and UserId: " + endpointWithUserId);
 
@@ -166,7 +158,7 @@ public class StepImplementation extends SpecBuild {
 		if (reqType.equalsIgnoreCase("POST")) {
 			response = reqSpec.when().post(ep.getPath());
 			if (CollectionVariables.Isbn == null) {
-				CollectionVariables.Isbn = rm.getIsbnFromBook(response);
+				CollectionVariables.Isbn = rb.getIsbnFromBook(response);
 				System.out.println("Setting isbn value in collection variables:" + CollectionVariables.Isbn);
 			}
 		} else if (reqType.equalsIgnoreCase("GET"))
@@ -193,9 +185,9 @@ public class StepImplementation extends SpecBuild {
 
 		PutBookWAnotherIsbn_Pojo putBookWAnotherIsbnPojo = new PutBookWAnotherIsbn_Pojo(CollectionVariables.UserId,
 				CollectionVariables.Isbn2);
-		
+
 		reqSpec = getBaseUriSpecBuild().header("Authorization", "Bearer " + CollectionVariables.Token)
-				.body(putBookWAnotherIsbnPojo).log().body();
+				.body(putBookWAnotherIsbnPojo).log().body(); //to see only request body add log().body()
 
 	}
 
@@ -205,13 +197,13 @@ public class StepImplementation extends SpecBuild {
 
 		// Retrieve the enum endPoint value
 		EndPoints ep = EndPoints.valueOf(endPoint);
-		System.out.println(" BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
+		System.out.println("BaseUri with endpoint of " + endPoint + ": " + ep.getPath().toString());
 
 		// Use the retrieved enum endpoint value and pass the Isbn1 from Collection
 		// variables to replace the placeholder
 
 		// Dynamically replace the {Isbn1} with the actual Isbn1 value
-		String endpointWithIsbn = ep.getPathWIsbn(CollectionVariables.Isbn);
+		String endpointWithIsbn = ep.getPathWithParams("Isbn",CollectionVariables.Isbn);
 
 		System.out.println("BaseUri with endpoint and Isbn: " + endpointWithIsbn);
 

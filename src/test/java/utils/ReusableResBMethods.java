@@ -1,8 +1,10 @@
 package utils;
 
+import java.io.IOException;
+
 import io.restassured.response.Response;
 
-public class ReusableMethods {
+public class ReusableResBMethods extends ExcelReader {
 
 	/* Reusable code for extracting particular given string value from response */
 	public static String extractStringFromResponse(Response response, String key) {
@@ -46,4 +48,9 @@ public class ReusableMethods {
 		return isbnValue;
 	}
 
+	public String rowValueFromExcel(String columnName) throws IOException {
+		return getCellValue("BookStoreApi", "positive", columnName);
+	}
+	
 }
+

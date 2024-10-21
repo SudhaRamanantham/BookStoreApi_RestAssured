@@ -12,7 +12,7 @@ public class PropertyReader {
 		return prop.getProperty(key);
 	}
 
-	public static Properties loadProperties() {
+	public static void loadProperties() {
 		prop = new Properties();
 
 		try {
@@ -21,7 +21,6 @@ public class PropertyReader {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		return prop;
 	}
 
 }
