@@ -2,17 +2,17 @@ package pojo;
 
 public class PostCreateAccountUser_Pojo {
 
-	private String userName;
-	private String password;
+	private Object userName;
+	private Object password;
 
 	//Constructor
-	public PostCreateAccountUser_Pojo(String userName, String password) {
+	public PostCreateAccountUser_Pojo(Object userName, Object password) {
 		this.userName = userName;
 		this.password = password;
 	}
-
+	
 	//Getter and Setter
-	public String getUserName() {
+	public Object getUserName() {
 		return userName;
 	}
 
@@ -20,7 +20,7 @@ public class PostCreateAccountUser_Pojo {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public Object getPassword() {
 		return password;
 	}
 

@@ -1,81 +1,129 @@
 package utils;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.util.NumberToTextConverter;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelReader {
 
-	public String getCellValue(String sheetName, String rowName, String columnName) throws IOException {
-		// File path for the Excel file
-		String path = System.getProperty("user.dir") + "/src/test/resources/testData/BookStoreApi.xlsx";
-		FileInputStream fis = new FileInputStream(path);
-		XSSFWorkbook workbook = new XSSFWorkbook(fis);
-		XSSFSheet sheet = workbook.getSheet(sheetName);
+	public static Map<String, List<Map<String, String>>> loadExcelData() {
 
-		// Maps to store the column index and row index
-		HashMap<String, Integer> columnMap = new HashMap<>();
-		int rowIndex = -1;
+		String filePath = System.getProperty("user.dir") + "/src/test/resources/testData/BookStoreApi.xlsx";
 
-		// Iterator to go through rows
-		Iterator<Row> rows = sheet.iterator();
-		Row firstRow = rows.next(); // Assuming the first row contains the column headers
-		Iterator<Cell> cells = firstRow.cellIterator();
+		Workbook wb = null;
 
-		// Populate the column map with column name and its index
-		int columnIndex = 0;
-		while (cells.hasNext()) {
-			Cell cell = cells.next();
-			columnMap.put(cell.getStringCellValue(), columnIndex);
-			columnIndex++;
+		Map<String, List<Map<String, String>>> sheetNameRowsMap = new HashMap<>();
+
+		try {
+
+			wb = WorkbookFactory.create(new File(filePath));
+
+			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+
+				Sheet sheet = wb.getSheetAt(i);
+
+				List<Map<String, String>> recordList = new ArrayList<>();
+
+				Row headerRow = sheet.getRow(0);
+
+				for (int j = 1; j <= sheet.getLastRowNum(); j++) {
+
+					Row row = sheet.getRow(j);
+					Map<String, String> record = new HashMap<>();
+
+					for (int k = 0; k < row.getLastCellNum(); k++) {
+
+						Cell cell = row.getCell(k);
+						String cellValue = cell != null
+								? cell.getCellType() == CellType.NUMERIC ? ((long) cell.getNumericCellValue() + "")
+										: cell.getStringCellValue()
+								: null;
+						String key = headerRow.getCell(k) != null ? headerRow.getCell(k).getStringCellValue() : "";
+						record.put(key, cellValue);
+					}
+
+					recordList.add(record);
+				}
+				sheetNameRowsMap.put(sheet.getSheetName(), recordList);
+			}
+
+		} catch (EncryptedDocumentException | IOException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				wb.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sheetNameRowsMap;
+	}
+
+	public static Map<String, String> getRowByTestCase(String sheetName, String testCase) {
+		// Load all Excel data into the map
+		Map<String, List<Map<String, String>>> sheetData = loadExcelData();
+		System.out.println("sheetData: " + sheetData);
+
+		// Check if the specified sheet exists
+		if (!sheetData.containsKey(sheetName)) {
+			System.out.println("Sheet '" + sheetName + "' not found.");
+			return null;
 		}
 
-		// Check if the specified column exists
-		if (!columnMap.containsKey(columnName)) {
-			workbook.close();
-			throw new IllegalArgumentException("Column '" + columnName + "' does not exist.");
-		}
+		// Retrieve rows for the specified sheet
+		List<Map<String, String>> rows = sheetData.get(sheetName);
 
-		// Find the row that matches the given row name in the first column
-		while (rows.hasNext()) {
-			Row row = rows.next();
-			Cell firstCell = row.getCell(0);
-			if (firstCell != null && firstCell.getCellType() == CellType.STRING
-					&& firstCell.getStringCellValue().equalsIgnoreCase(rowName)) {
-				rowIndex = row.getRowNum();
-				break;
+		// Iterate through rows to find the row matching the testCase
+		for (Map<String, String> row : rows) {
+			System.out.println("Row keys: " + row.keySet()); // Print available keys
+			String testCaseValue = row.get("TestCases"); // Use the exact key name as in your data structure
+			if (testCaseValue != null && testCase.equalsIgnoreCase(testCaseValue)) {
+				return row; // Return the matching row
 			}
 		}
 
-		// Check if the row was found
-		if (rowIndex == -1) {
-			workbook.close();
-			throw new IllegalArgumentException("Row '" + rowName + "' does not exist.");
-		}
-
-		// Get the cell value from the specified column for the found row
-		Row targetRow = sheet.getRow(rowIndex);
-		int targetColumnIndex = columnMap.get(columnName);
-		Cell targetCell = targetRow.getCell(targetColumnIndex);
-
-		String cellValue;
-		if (targetCell == null) {
-			cellValue = "";
-		} else if (targetCell.getCellType() == CellType.STRING) {
-			cellValue = targetCell.getStringCellValue();
-		} else {
-			cellValue = NumberToTextConverter.toText(targetCell.getNumericCellValue());
-		}
-
-		workbook.close();
-		return cellValue;
+		// If no matching test case is found, return null
+		System.out.println("Test case '" + testCase + "' not found in sheet '" + sheetName + "'.");
+		return null;
 	}
+
+	public static String getCellValue(String sheetName, String testCase, String columnName) {
+		// Load all Excel data into the map
+		Map<String, List<Map<String, String>>> sheetData = loadExcelData();
+
+		// Check if the specified sheet exists
+		if (!sheetData.containsKey(sheetName)) {
+			System.out.println("Sheet '" + sheetName + "' not found.");
+			return null;
+		}
+
+		// Retrieve rows for the specified sheet
+		List<Map<String, String>> rows = sheetData.get(sheetName);
+
+		// Iterate through rows to find the row matching the testCase
+		for (Map<String, String> row : rows) {
+			String testCaseValue = row.get("TestCases"); // Use the exact key name as in your data structure
+			if (testCaseValue != null && testCase.equalsIgnoreCase(testCaseValue)) {
+				// Return the cell value for the specified column name
+				return row.getOrDefault(columnName, null); // Use columnName to get the cell value
+			}
+		}
+
+		// If no matching test case is found, return null
+		System.out.println("Test case '" + testCase + "' not found in sheet '" + sheetName + "'.");
+		return null;
+	}
+
 }

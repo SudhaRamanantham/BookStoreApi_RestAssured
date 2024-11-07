@@ -1,7 +1,5 @@
 package utils;
 
-import java.io.IOException;
-
 import io.restassured.response.Response;
 
 public class ReusableResBMethods extends ExcelReader {
@@ -48,9 +46,21 @@ public class ReusableResBMethods extends ExcelReader {
 		return isbnValue;
 	}
 
-	public String rowValueFromExcel(String columnName) throws IOException {
+	public String excelCellValue(String columnName) {
 		return getCellValue("BookStoreApi", "positive", columnName);
 	}
-	
-}
 
+//	public String rowValueFromExcel(String columnName) throws IOException {
+//		return getCellValue("BookStoreApi", "positive", columnName);
+//	}
+
+//	public HashMap<String, Object> rowValueFromExcel(String sheetName, String testCaseName) throws IOException {
+//		ExcelReader exR = new ExcelReader();
+//		ArrayList excelData = exR.getData(sheetName, testCaseName);
+//		HashMap<String, Object> map = new HashMap<>();
+//		map.put("username", excelData.get(1));
+//		map.put("password", excelData.get(2));
+//		return map;
+//	}
+
+}

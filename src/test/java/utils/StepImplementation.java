@@ -27,8 +27,14 @@ public class StepImplementation extends SpecBuild {
 
 	// In stepDefenition -> Given()-> baseUri,header,requestBody
 	public void httpNoAuthWBody() throws IOException {
-		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(rb.rowValueFromExcel("UserName"),
-				rb.rowValueFromExcel("Password"));
+		String userNameFromE = rb.excelCellValue("UserName");
+		String passwordFromE = rb.excelCellValue("Password");
+
+		System.out.println("Username from excel: "+userNameFromE);
+		System.out.println("Password from excel: "+passwordFromE);
+		
+		PostCreateAccountUser_Pojo createAccountUserPojo = new PostCreateAccountUser_Pojo(userNameFromE,passwordFromE);
+
 		reqSpec = getBaseUriSpecBuild().body(createAccountUserPojo);
 	}
 
