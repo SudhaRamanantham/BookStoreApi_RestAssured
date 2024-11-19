@@ -50,10 +50,6 @@ public class ReusableResBMethods extends ExcelReader {
 		return getCellValue("BookStoreApi", "positive", columnName);
 	}
 
-//	public String rowValueFromExcel(String columnName) throws IOException {
-//		return getCellValue("BookStoreApi", "positive", columnName);
-//	}
-
 //	public HashMap<String, Object> rowValueFromExcel(String sheetName, String testCaseName) throws IOException {
 //		ExcelReader exR = new ExcelReader();
 //		ArrayList excelData = exR.getData(sheetName, testCaseName);

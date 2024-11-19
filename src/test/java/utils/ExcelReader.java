@@ -71,7 +71,7 @@ public class ExcelReader {
 		return sheetNameRowsMap;
 	}
 
-	public static Map<String, String> getRowByTestCase(String sheetName, String testCase) {
+	public static Map<String, String> getRowData(String sheetName, String testCase) {
 		// Load all Excel data into the map
 		Map<String, List<Map<String, String>>> sheetData = loadExcelData();
 		System.out.println("sheetData: " + sheetData);

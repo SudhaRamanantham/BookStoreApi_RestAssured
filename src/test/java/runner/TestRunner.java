@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(plugin = { "pretty", "html:target/BookStoreApi_RestAssured_Sudha_Organized.html", "json:target/cucumber-report.json",
 		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // reporting purpose
 		monochrome = false, // console output color
-//		tags = "@DsAlgo_1Browser", // tags from feature file
+//		tags = "@FeatureFileTagName", // tags from feature file
 		dryRun = !true, // To add new method give true
 		features = { "src/test/resources/features" }, glue = { "stepDefinition" })
 
